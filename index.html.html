@@ -41,7 +41,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: -1;
+            z-index: 1;
             overflow: hidden;
         }
 
@@ -159,6 +159,8 @@
             border: 2px solid rgba(192, 192, 192, 0.25);
             animation: slideUp 0.8s ease-out;
             margin: 10px auto;
+            position: relative;
+            z-index: 2;
         }
 
         @keyframes slideUp {
@@ -303,7 +305,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: -2;
+            z-index: 0;
         }
 
         .shape {

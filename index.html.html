@@ -7,21 +7,18 @@
     <meta name="color-scheme" content="dark">
     <meta name="theme-color" content="#0a0a0a">
     
-    <!-- لإظهار الصورة عند مشاركة الرابط عبر التطبيقات (Discord, WhatsApp, Twitter...) -->
     <meta property="og:title" content="Twelve - الملف الشخصي">
     <meta property="og:description" content="مطور بوتات ديسكورد | raeedxa">
-    <meta property="og:image" content="https://cdn.discordapp.com/attachments/1238885481559887994/1481589317695438968/QChIZBU.jpg?ex=69b3dd13&is=69b28b93&hm=dfffbe6187c5bf348a289e9036655db9f70b2ee354c4f799a071772270e693b4&">
+    <meta property="og:image" content="https://i.postimg.cc/FRcSHZ7B/twelve-avtar-2.jpg">
     <meta property="og:type" content="website">
     
-    <!-- إعدادات إضافية لتويتر (Twitter Cards) -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Twelve - الملف الشخصي">
     <meta name="twitter:description" content="مطور بوتات ديسكورد | raeedxa">
-    <meta name="twitter:image" content="https://cdn.discordapp.com/attachments/1238885481559887994/1481589317695438968/QChIZBU.jpg?ex=69b3dd13&is=69b28b93&hm=dfffbe6187c5bf348a289e9036655db9f70b2ee354c4f799a071772270e693b4&">
+    <meta name="twitter:image" content="https://i.postimg.cc/FRcSHZ7B/twelve-avtar-2.jpg">
 
     <link rel="icon" href="https://cdn.discordapp.com/attachments/1238885481559887994/1481589317695438968/QChIZBU.jpg?ex=69b3dd13&is=69b28b93&hm=dfffbe6187c5bf348a289e9036655db9f70b2ee354c4f799a071772270e693b4&" type="image/jpeg">
     
-    <!-- إضافة خط Playpen Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap" rel="stylesheet">
@@ -375,7 +372,6 @@
             }
         }
 
-        /* تحسينات خاصة بالجوالات */
         @media (max-width: 480px) {
             body {
                 padding: 8px;
@@ -463,7 +459,6 @@
             }
         }
 
-        /* تحسينات للشاشات الأصغر جداً */
         @media (max-width: 320px) {
             .container {
                 padding: 18px 10px;
@@ -509,7 +504,6 @@
             }
         }
 
-        /* تحسينات للشاشات المتوسطة */
         @media (min-width: 481px) and (max-width: 768px) {
             .container {
                 padding: 35px 25px;
@@ -531,7 +525,6 @@
             }
         }
 
-        /* تأثيرات اللمس للجوالات */
         @media (hover: none) and (pointer: coarse) {
             .social-link:active {
                 transform: translateY(-2px) scale(0.98);
@@ -544,7 +537,6 @@
             }
         }
 
-        /* تحسين الأداء للجوالات */
         @media (max-width: 768px) {
             .autumn-bg {
                 will-change: auto;
@@ -556,7 +548,6 @@
 
             .floating-shapes {
                 display: none;
-                /* إخفاء الأشكال العائمة على الجوالات لتحسين الأداء */
             }
         }
     </style>
@@ -654,9 +645,7 @@
     </div>
 
     <script>
-        // إضافة تأثيرات تفاعلية محسنة للجوالات
         document.querySelectorAll('.social-link').forEach(link => {
-            // تحسين التفاعل للجوالات
             link.addEventListener('touchstart', function (e) {
                 e.preventDefault();
                 this.style.transform = 'translateY(-3px) scale(1.05)';
@@ -665,13 +654,11 @@
             link.addEventListener('touchend', function (e) {
                 e.preventDefault();
                 this.style.transform = 'translateY(0) scale(1)';
-                // فتح الرابط بعد انتهاء التأثير
                 setTimeout(() => {
                     window.open(this.href, '_blank');
                 }, 100);
             });
 
-            // للأجهزة التي تدعم hover
             link.addEventListener('mouseenter', function () {
                 if (!('ontouchstart' in window)) {
                     this.style.transform = 'translateY(-5px) scale(1.1)';
@@ -685,7 +672,6 @@
             });
         });
 
-        // تأثير النقر على الصورة الشخصية محسن للجوال
         const profileImage = document.querySelector('.profile-image');
         profileImage.addEventListener('touchstart', function () {
             this.style.animation = 'none';
@@ -703,7 +689,6 @@
             }
         });
 
-        // تغيير ألوان الخلفية تدريجياً
         let colorIndex = 0;
         const autumnColors = [
             'linear-gradient(135deg, #0a0a0a 0%, #2c2c2c 40%, #4a4a4a 70%, #787878 100%)',
@@ -718,12 +703,9 @@
             document.body.style.background = autumnColors[colorIndex];
         }
 
-        // تغيير الخلفية كل 15 ثانية (مدة أطول للجوالات)
         setInterval(changeBackground, 15000);
 
-        // إضافة المزيد من الأوراق بشكل عشوائي (محسن للجوالات)
         function createLeaf() {
-            // تقليل عدد الأوراق على الجوالات لتحسين الأداء
             if (window.innerWidth <= 768 && Math.random() < 0.3) return;
 
             const leaf = document.createElement('div');
@@ -733,14 +715,12 @@
             leaf.style.left = Math.random() * 100 + '%';
             leaf.style.animationDuration = (Math.random() * 5 + 8) + 's';
 
-            // وميض عشوائي لكل نجمة
             const shimmerSpeed = (Math.random() * 1.5 + 0.8).toFixed(2);
             leaf.style.animationName = 'fall, shimmer';
             leaf.style.animationTimingFunction = 'linear, ease-in-out';
             leaf.style.animationIterationCount = 'infinite, infinite';
             leaf.style.animationDuration = (Math.random() * 5 + 8) + 's, ' + shimmerSpeed + 's';
 
-            // تقليل حجم الأوراق على الجوالات
             const leafSize = window.innerWidth <= 480 ? (Math.random() * 8 + 12) : (Math.random() * 10 + 15);
             leaf.style.fontSize = leafSize + 'px';
 
@@ -751,7 +731,6 @@
             }, 15000);
         }
 
-        // إنشاء أوراق جديدة بشكل دوري
         setInterval(createLeaf, window.innerWidth <= 768 ? 2500 : 1500);
     </script>
 </body>

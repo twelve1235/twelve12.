@@ -555,10 +555,31 @@
                 display: none;
             }
         }
+
+        /* زر الحقوق المخفي تقريباً */
+        .copyright-btn {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            color: rgba(255, 255, 255, 0.05); /* لون شبه شفاف يندمج بقوة مع الخلفية */
+            text-decoration: none;
+            font-size: 11px;
+            z-index: 1000;
+            transition: color 0.3s;
+            user-select: none;
+            letter-spacing: 1px;
+        }
+
+        .copyright-btn:hover {
+            color: rgba(255, 255, 255, 0.3); /* يبين شوي إذا حط الماوس عليه */
+        }
     </style>
 </head>
 
 <body>
+    <!-- زر الحقوق -->
+    <a href="https://discord.gg/" class="copyright-btn" title="جميع الحقوق محفوظة لـ Twelve">© Twelve</a>
+
     <div class="autumn-bg">
         <div class="leaf">✦</div>
         <div class="leaf">◇</div>
@@ -649,6 +670,37 @@
     </div>
 
     <script>
+        // ====== حماية الموقع من السرقة (تشفير خفيف) ======
+        
+        // 1. منع الكليك يمين
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        
+        // 2. منع اختصارات المطورين وسحب الكود (F12, Ctrl+U, Ctrl+S وغيرها)
+        document.onkeydown = function(e) {
+            // منع F12
+            if (e.keyCode === 123) {
+                return false;
+            }
+            // منع Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C (أدوات المطورين)
+            if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
+                return false;
+            }
+            // منع Ctrl+U (عرض المصدر)
+            if (e.ctrlKey && e.keyCode === 85) {
+                return false;
+            }
+            // منع Ctrl+S (حفظ الصفحة)
+            if (e.ctrlKey && e.keyCode === 83) {
+                return false;
+            }
+        };
+
+        // 3. منع تحديد ونسخ النصوص
+        document.onselectstart = function() { return false; };
+        document.body.style.userSelect = "none"; 
+        
+        // ===================================================
+
         document.querySelectorAll('.social-link').forEach(link => {
             link.addEventListener('touchstart', function (e) {
                 e.preventDefault();

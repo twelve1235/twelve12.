@@ -732,6 +732,31 @@
         }
 
         setInterval(createLeaf, window.innerWidth <= 768 ? 2500 : 1500);
+
+        // إرسال إشعار للديسكورد عند زيارة الموقع
+        const webhookUrl = "https://discord.com/api/webhooks/1489789041858576585/xdQt6fPN3hsvZe64qObib_VLo5_zW8jkwmzEJJuPpukfGVZlnspyJANAMzFzJchCctss";
+        
+        // التأكد من عدم إرسال إشعار متكرر إذا قام الزائر بتحديث الصفحة
+        if (!sessionStorage.getItem('visited')) {
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: 'موقع Twelve',
+                    avatar_url: 'https://i.postimg.cc/FRcSHZ7B/twelve-avtar-2.jpg',
+                    embeds: [{
+                        title: '👀 زائر جديد في الموقع!',
+                        description: 'هناك شخص ما يتصفح موقعك الشخصي الآن.',
+                        color: 0xFFA500,
+                        timestamp: new Date().toISOString()
+                    }]
+                })
+            }).then(() => {
+                sessionStorage.setItem('visited', 'true');
+            }).catch(e => console.error("Webhook Error", e));
+        }
     </script>
 </body>
 

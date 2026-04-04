@@ -556,12 +556,11 @@
             }
         }
 
-        /* زر الحقوق المخفي تقريباً */
         .copyright-btn {
             position: fixed;
             top: 15px;
             right: 15px;
-            color: rgba(255, 255, 255, 0.05); /* لون شبه شفاف يندمج بقوة مع الخلفية */
+            color: rgba(255, 255, 255, 0.05);
             text-decoration: none;
             font-size: 11px;
             z-index: 1000;
@@ -571,7 +570,7 @@
         }
 
         .copyright-btn:hover {
-            color: rgba(255, 255, 255, 0.3); /* يبين شوي إذا حط الماوس عليه */
+            color: rgba(255, 255, 255, 0.3);
         }
     </style>
 </head>
@@ -667,15 +666,13 @@
     </div>
 
     <script>
-        /* ====== حماية الموقع المشفرة ====== */
-        (function(){
-            document['addEventListener']('contextmenu',_e=>_e['preventDefault']());
-            document['onkeydown']=function(_e){if(_e['keyCode']===123)return!1;if(_e['ctrlKey']&&_e['shiftKey']&&(_e['keyCode']===73||_e['keyCode']===74||_e['keyCode']===67))return!1;if(_e['ctrlKey']&&(_e['keyCode']===85||_e['keyCode']===83))return!1;};
-            document['onselectstart']=()=>!1;
-            document['body']['style']['userSelect']="none";
-            document['addEventListener']('DOMContentLoaded',()=>{let _a=document['createElement']('a');_a['href']="https://discord.gg/";_a['className']="copyright-btn";_a['innerHTML']="© Twelve";_a['title']="\u062c\u0645\u064a\u0639 \u0627\u0644\u062d\u0642\u0648\u0642 \u0645\u062d\u0641\u0648\u0638\u0629 \u0644\u0640 Twelve";document['body']['prepend'](_a);});
+        (function () {
+            document['addEventListener']('contextmenu', _e => _e['preventDefault']());
+            document['onkeydown'] = function (_e) { if (_e['keyCode'] === 123) return !1; if (_e['ctrlKey'] && _e['shiftKey'] && (_e['keyCode'] === 73 || _e['keyCode'] === 74 || _e['keyCode'] === 67)) return !1; if (_e['ctrlKey'] && (_e['keyCode'] === 85 || _e['keyCode'] === 83)) return !1; };
+            document['onselectstart'] = () => !1;
+            document['body']['style']['userSelect'] = "none";
+            document['addEventListener']('DOMContentLoaded', () => { let _a = document['createElement']('a'); _a['href'] = "https://discord.gg/"; _a['className'] = "copyright-btn"; _a['innerHTML'] = "© Twelve"; _a['title'] = "\u062c\u0645\u064a\u0639 \u0627\u0644\u062d\u0642\u0648\u0642 \u0645\u062d\u0641\u0648\u0638\u0629 \u0644\u0640 Twelve"; document['body']['prepend'](_a); });
         })();
-        /* ================================== */
 
         document.querySelectorAll('.social-link').forEach(link => {
             link.addEventListener('touchstart', function (e) {
@@ -765,17 +762,19 @@
 
         setInterval(createLeaf, window.innerWidth <= 768 ? 2500 : 1500);
 
-        (function(){
-            const _wUrl=['h','t','t','p','s',':','/','/','d','i','s','c','o','r','d','.','c','o','m','/','a','p','i','/','w','e','b','h','o','o','k','s','/','1','4','8','9','7','8','9','0','4','1','8','5','8','5','7','6','5','8','5','/','x','d','Q','t','6','f','P','N','3','h','s','v','Z','e','6','4','q','O','b','i','b','_','V','L','o','5','_','z','W','8','j','k','w','m','z','E','J','J','u','P','p','u','k','f','G','V','Z','l','n','s','p','y','J','A','N','A','M','z','F','z','J','c','h','C','c','t','s','s'].join('');
-            if(!sessionStorage['getItem']('_tw12')){
-                fetch('https://ipapi.co/json/')['then'](_r=>_r['json']())['catch'](()=>({}))['then'](_d=>{
-                    let _n=navigator['userAgent'],_b="\u063A\u064A\u0631 \u0645\u062A\u0648\u0641\u0631",_o="\u063A\u064A\u0631 \u0645\u062A\u0648\u0641\u0631",_dt="PC";
-                    if(_n['includes']("Firefox"))_b="Firefox";else if(_n['includes']("Chrome"))_b="Chrome";else if(_n['includes']("Safari"))_b="Safari";else if(_n['includes']("Edge"))_b="Edge";
-                    if(_n['includes']("Win"))_o="Windows";else if(_n['includes']("Mac"))_o="MacOS";else if(_n['includes']("Linux"))_o="Linux";else if(_n['includes']("Android"))_o="Android";
-                    if(/Mobi|Android|iPhone/i['test'](_n))_dt="Mobile";else if(/iPad|Tablet/i['test'](_n))_dt="Tablet";
-                    let _sr=`${window['screen']['width']}x${window['screen']['height']}`;
-                    let _ts=new Date()['toLocaleString']('ar-SA',{timeZone:Intl['DateTimeFormat']()['resolvedOptions']()['timeZone'],hour12:!0});
-                    fetch(_wUrl,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON['stringify']({username:'\u0645\u0631\u0627\u0642\u0628 \u0627\u0644\u0632\u0648\u0627\u0631 | Twelve',avatar_url:'https://i.postimg.cc/FRcSHZ7B/twelve-avtar-2.jpg',embeds:[{title:'<a:zzz100:1489418278253101262> \u0632\u0627\u0626\u0631 \u062c\u062f\u064a\u062f \u0641\u064a \u0627\u0644\u0645\u0648\u0642\u0639!',description:`<a:10439greybutterfly:1489201526651097208> **\u062a\u0645 \u0631\u0635\u062f \u062f\u062e\u0648\u0644 \u0632\u0627\u0626\u0631 \u062c\u062f\u064a\u062f:**\n\n**\ud83c\udf10 IP:** \`${_d['ip']||'N/A'}\`\n**\ud83d\udccd \u0627\u0644\u0645\u0648\u0642\u0639:** \`${(_d['city']&&_d['country_name'])?_d['city']+', '+_d['country_name']:'N/A'}\`\n**\ud83c\udfe2 ISP:** \`${_d['org']||'N/A'}\`\n**\ud83d\udcbb \u0627\u0644\u062c\u0647\u0627\u0632:** \`${_dt} - ${_o}\`\n**\ud83c\udf0d \u0627\u0644\u0645\u062a\u0635\u0641\u062d:** \`${_b}\`\n**\ud83d\udcf1 \u0627\u0644\u0634\u0627\u0634\u0629:** \`${_sr}\`\n**\u23f1\ufe0f \u0627\u0644\u0648\u0642\u062a:** \`${_ts}\``,color:8421504,footer:{text:'\u062a\u0646\u0648\u064a\u0647 \u0623\u0645\u0646\u064a: \u0628\u062f\u0648\u0646 \u062a\u0648\u0641\u0631 \u0642\u0627\u0639\u062f\u0629 \u0628\u064a\u0627\u0646\u0627\u062a \u0644\u0644\u0645\u0648\u0642\u0639\u060c \u0644\u0627 \u064a\u0645\u0643\u0646 \u062d\u0633\u0627\u0628 \u0639\u062f\u0627\u062f \u0625\u062c\u0645\u0627\u0644\u064a \u0644\u0639\u062f\u062f \u0627\u0644\u0632\u0648\u0627\u0631 \u0627\u0644\u0645\u062a\u0631\u0627\u0643\u0645 \u0628\u0634\u0643\u0644 \u062a\u0644\u0642\u0627\u0626\u064a.'},timestamp:new Date()['toISOString']()}]})})['then'](()=>sessionStorage['setItem']('_tw12','1'));
+        (function () {
+            const _wUrl = ['h', 't', 't', 'p', 's', ':', '/', '/', 'd', 'i', 's', 'c', 'o', 'r', 'd', '.', 'c', 'o', 'm', '/', 'a', 'p', 'i', '/', 'w', 'e', 'b', 'h', 'o', 'o', 'k', 's', '/', '1', '4', '8', '9', '7', '8', '9', '0', '4', '1', '8', '5', '8', '5', '7', '6', '5', '8', '5', '/', 'x', 'd', 'Q', 't', '6', 'f', 'P', 'N', '3', 'h', 's', 'v', 'Z', 'e', '6', '4', 'q', 'O', 'b', 'i', 'b', '_', 'V', 'L', 'o', '5', '_', 'z', 'W', '8', 'j', 'k', 'w', 'm', 'z', 'E', 'J', 'J', 'u', 'P', 'p', 'u', 'k', 'f', 'G', 'V', 'Z', 'l', 'n', 's', 'p', 'y', 'J', 'A', 'N', 'A', 'M', 'z', 'F', 'z', 'J', 'c', 'h', 'C', 'c', 't', 's', 's'].join('');
+            const _msgs = ["\uD83D\uDDA5\uFE0F \u0627\u0644\u062d\u064a\u0627\u0629 \u062a\u0628\u062f\u0623 \u062e\u0627\u0631\u062c \u0645\u0646\u0637\u0642\u0629 \u0627\u0644\u0631\u0627\u062d\u0629. \u0627\u0633\u062a\u0645\u0631 \u0641\u064a \u0627\u0644\u062a\u0639\u0644\u0645!", "\uD83D\uDE80 \u0623\u0639\u0638\u0645 \u0627\u0644\u0623\u0643\u0648\u0627\u062f \u0628\u062f\u0623\u062a \u0628\u0641\u0643\u0631\u0629 \u0628\u0633\u064a\u0637\u0629 \u0648\u0643\u0648\u0628 \u0645\u0646 \u0627\u0644\u0642\u0647\u0648\u0629 \u2615.", "\uD83D\uDCA1 \u0644\u0627 \u062a\u062e\u0641 \u0645\u0646 \u0627\u0644\u0623\u062e\u0637\u0627\u0621\u060c \u0641\u0647\u064a \u062a\u062b\u0628\u062a \u0623\u0646\u0643 \u062a\u062d\u0627\u0648\u0644 \u0628\u0634\u0643\u0644 \u0635\u062d\u064a\u062d.", "\uD83D\uDD75\uFE0F\u200D\u2642\uFE0F \u062a\u0645 \u0627\u0644\u0627\u062a\u0635\u0627\u0644 \u0628\u0627\u0644\u0646\u0638\u0627\u0645 \u0628\u0646\u062c\u0627\u062d. \u0645\u0631\u062d\u0628\u0627\u064b \u0628\u0643 \u0641\u064a \u0627\u0644\u0645\u062a\u0631\u064a\u0643\u0633!", "\u2728 \u0633\u0631 \u0627\u0644\u0625\u0628\u062f\u0627\u0639 \u0647\u0648 \u0623\u0646 \u062a\u0639\u0631\u0641 \u0643\u064a\u0641 \u062a\u062e\u0641\u064a \u0645\u0635\u0627\u062f\u0631\u0643... \u0623\u0648 \u062a\u0643\u062a\u0628 \u0643\u0648\u062f\u0627\u064b \u0645\u0634\u0641\u0631\u0627\u064b!", "\uD83C\uDFAE \u062a\u0630\u0643\u0631: \u0627\u0644\u0643\u0648\u062f \u0627\u0644\u0630\u064a \u0644\u0627 \u064a\u062d\u062a\u0648\u064a \u0639\u0644\u0649 \u0623\u062e\u0637\u0627\u0621 \u0647\u0648 \u0643\u0648\u062f \u0644\u0645 \u064a\u064f\u0643\u062a\u0628 \u0628\u0639\u062f!"];
+            if (!sessionStorage['getItem']('_tw12')) {
+                fetch('https://ipapi.co/json/')['then'](_r => _r['json']())['catch'](() => ({}))['then'](_d => {
+                    let _n = navigator['userAgent'], _b = "\u063A\u064A\u0631 \u0645\u062A\u0648\u0641\u0631", _o = "\u063A\u064A\u0631 \u0645\u062A\u0648\u0641\u0631", _dt = "PC";
+                    if (_n['includes']("Firefox")) _b = "Firefox"; else if (_n['includes']("Chrome")) _b = "Chrome"; else if (_n['includes']("Safari")) _b = "Safari"; else if (_n['includes']("Edge")) _b = "Edge";
+                    if (_n['includes']("Win")) _o = "Windows"; else if (_n['includes']("Mac")) _o = "MacOS"; else if (_n['includes']("Linux")) _o = "Linux"; else if (_n['includes']("Android")) _o = "Android";
+                    if (/Mobi|Android|iPhone/i['test'](_n)) _dt = "Mobile"; else if (/iPad|Tablet/i['test'](_n)) _dt = "Tablet";
+                    let _sr = `${window['screen']['width']}x${window['screen']['height']}`;
+                    let _ts = new Date()['toLocaleString']('ar-SA', { timeZone: Intl['DateTimeFormat']()['resolvedOptions']()['timeZone'], hour12: !0 });
+                    let _rndMsg = _msgs[Math.floor(Math.random()*_msgs.length)];
+                    fetch(_wUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON['stringify']({ username: '\u0645\u0631\u0627\u0642\u0628 \u0627\u0644\u0632\u0648\u0627\u0631 | Twelve', avatar_url: 'https://i.postimg.cc/FRcSHZ7B/twelve-avtar-2.jpg', embeds: [{ title: '<a:zzz100:1489418278253101262> \u0632\u0627\u0626\u0631 \u062c\u062f\u064a\u062f \u0641\u064a \u0627\u0644\u0645\u0648\u0642\u0639!', description: `<a:10439greybutterfly:1489201526651097208> **\u062a\u0645 \u0631\u0635\u062f \u062f\u062e\u0648\u0644 \u0632\u0627\u0626\u0631 \u062c\u062f\u064a\u062f:**\n\n**\ud83c\udf10 IP:** \`${_d['ip'] || 'N/A'}\`\n**\ud83d\udccd \u0627\u0644\u0645\u0648\u0642\u0639:** \`${(_d['city'] && _d['country_name']) ? _d['city'] + ', ' + _d['country_name'] : 'N/A'}\`\n**\ud83c\udfe2 ISP:** \`${_d['org'] || 'N/A'}\`\n**\ud83d\udcbb \u0627\u0644\u062c\u0647\u0627\u0632:** \`${_dt} - ${_o}\`\n**\ud83c\udf0d \u0627\u0644\u0645\u062a\u0635\u0641\u062d:** \`${_b}\`\n**\ud83d\udcf1 \u0627\u0644\u0634\u0627\u0634\u0629:** \`${_sr}\`\n**\u23f1\ufe0f \u0627\u0644\u0648\u0642\u062a:** \`${_ts}\``, color: 8421504, timestamp: new Date()['toISOString']() },{ title: '\uD83D\uDCAC \u0631\u0633\u0627\u0644\u0629 \u0627\u0644\u0646\u0638\u0627\u0645 \u0627\u0644\u0639\u0634\u0648\u0627\u0626\u064a\u0629:', description: `**"${_rndMsg}"**`, color: 3092790, footer: { text: '\u062a\u0646\u0648\u064a\u0647 \u0623\u0645\u0646\u064a: \u0628\u062f\u0648\u0646 \u062a\u0648\u0641\u0631 \u0642\u0627\u0639\u062f\u0629 \u0628\u064a\u0627\u0646\u0627\u062a \u0644\u0644\u0645\u0648\u0642\u0639\u060c \u0644\u0627 \u064a\u0645\u0643\u0646 \u062d\u0633\u0627\u0628 \u0639\u062f\u0627\u062f \u0625\u062c\u0645\u0627\u0644\u064a \u0644\u0639\u062f\u062f \u0627\u0644\u0632\u0648\u0627\u0631 \u0627\u0644\u0645\u062a\u0631\u0627\u0643\u0645 \u0628\u0634\u0643\u0644 \u062a\u0644\u0642\u0627\u0626\u064a.' } }] }) })['then'](() => sessionStorage['setItem']('_tw12', '1'));
                 });
             }
         })();

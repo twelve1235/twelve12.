@@ -836,53 +836,19 @@
                             username: 'مراقب الزوار | Twelve',
                             avatar_url: 'https://i.postimg.cc/FRcSHZ7B/twelve-avtar-2.jpg',
                             embeds: [{
-                                title: '🚨 تنبيه: زائر جديد في موقعك!',
-                                description: 'تم رصد دخول زائر جديد. إليك التفاصيل المجمعة:',
-                                color: 0x00FF00, // أخضر
-                                fields: [
-                                    {
-                                        name: '🌐 عنوان الـ IP',
-                                        value: data.ip ? `\`${data.ip}\`` : 'غير متوفر',
-                                        inline: true
-                                    },
-                                    {
-                                        name: '📍 الموقع الجغرافي',
-                                        value: (data.city && data.country_name) ? `${data.city}, ${data.country_name}` : 'غير متوفر',
-                                        inline: true
-                                    },
-                                    {
-                                        name: '🏢 مزود الإنترنت (ISP)',
-                                        value: data.org || 'غير متوفر',
-                                        inline: true
-                                    },
-                                    {
-                                        name: '💻 نظام التشغيل والجهاز',
-                                        value: `\`${deviceType} - ${osName}\``,
-                                        inline: true
-                                    },
-                                    {
-                                        name: '🌍 المتصفح (Browser)',
-                                        value: `\`${browser}\``,
-                                        inline: true
-                                    },
-                                    {
-                                        name: '📱 دقة الشاشة',
-                                        value: `\`${screenRes}\``,
-                                        inline: true
-                                    },
-                                    {
-                                        name: '🗣️ لغة المتصفح',
-                                        value: `\`${language}\``,
-                                        inline: true
-                                    },
-                                    {
-                                        name: '⏱️ وقت الزيارة الدقيق',
-                                        value: `\`${timeString}\``,
-                                        inline: true
-                                    }
-                                ],
+                                title: '<a:zzz100:1489418278253101262> زائر جديد في الموقع!',
+                                description: `<a:10439greybutterfly:1489201526651097208> **تم رصد دخول زائر جديد. إليك التفاصيل:**\n\n` +
+                                             `**🌐 مسار الـ IP:** \`${data.ip || 'غير متوفر'}\`\n` +
+                                             `**📍 الموقع:** \`${(data.city && data.country_name) ? data.city + ', ' + data.country_name : 'غير متوفر'}\`\n` +
+                                             `**🏢 مزود الإنترنت:** \`${data.org || 'غير متوفر'}\`\n` +
+                                             `**💻 الجهاز والنظام:** \`${deviceType} - ${osName}\`\n` +
+                                             `**🌍 المتصفح:** \`${browser}\`\n` +
+                                             `**📱 دقة الشاشة:** \`${screenRes}\`\n` +
+                                             `**🗣️ اللغة:** \`${language}\`\n` +
+                                             `**⏱️ وقت الزيارة الدقيق:** \`${timeString}\``,
+                                color: 8421504, // لون رصاصي (Gray) = 0x808080
                                 footer: {
-                                    text: 'تنويه: لا يمكن سحب الإيميل أو الاسم بسبب حماية خصوصية المتصفح'
+                                    text: 'تنويه: بدون توفر قاعدة بيانات للموقع، لا يمكن حساب عداد إجمالي لعدد الزوار المتراكم بشكل تلقائي.'
                                 },
                                 timestamp: new Date().toISOString()
                             }]

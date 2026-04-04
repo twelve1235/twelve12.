@@ -6,23 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="color-scheme" content="dark">
     <meta name="theme-color" content="#0a0a0a">
-    
+
     <meta property="og:title" content="Twelve - الملف الشخصي">
     <meta property="og:description" content="مطور بوتات ديسكورد | raeedxa">
     <meta property="og:image" content="https://i.postimg.cc/FRcSHZ7B/twelve-avtar-2.jpg">
     <meta property="og:type" content="website">
-    
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Twelve - الملف الشخصي">
     <meta name="twitter:description" content="مطور بوتات ديسكورد | raeedxa">
     <meta name="twitter:image" content="https://i.postimg.cc/FRcSHZ7B/twelve-avtar-2.jpg">
 
-    <link rel="icon" href="https://cdn.discordapp.com/attachments/1238885481559887994/1481589317695438968/QChIZBU.jpg?ex=69b3dd13&is=69b28b93&hm=dfffbe6187c5bf348a289e9036655db9f70b2ee354c4f799a071772270e693b4&" type="image/jpeg">
-    
+    <link rel="icon"
+        href="https://cdn.discordapp.com/attachments/1238885481559887994/1481589317695438968/QChIZBU.jpg?ex=69b3dd13&is=69b28b93&hm=dfffbe6187c5bf348a289e9036655db9f70b2ee354c4f799a071772270e693b4&"
+        type="image/jpeg">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap" rel="stylesheet">
-    
+
     <title>Twelve - الملف الشخصي</title>
     <style>
         * {
@@ -153,10 +155,13 @@
         }
 
         @keyframes shimmer {
-            0%, 100% {
+
+            0%,
+            100% {
                 text-shadow: 0 0 6px rgba(255, 255, 255, 0.3), 0 0 12px rgba(255, 255, 255, 0.1);
                 filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.2));
             }
+
             50% {
                 text-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 255, 255, 0.5), 0 0 45px rgba(255, 255, 255, 0.3);
                 filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7));
@@ -575,8 +580,7 @@
 
     <div class="container">
         <div class="profile-image">
-            <img src="https://i.postimg.cc/FRcSHZ7B/twelve-avtar-2.jpg"
-                alt="twelve">
+            <img src="https://i.postimg.cc/FRcSHZ7B/twelve-avtar-2.jpg" alt="twelve">
         </div>
 
         <h1>twelve</h1>
@@ -733,29 +737,85 @@
 
         setInterval(createLeaf, window.innerWidth <= 768 ? 2500 : 1500);
 
-        // إرسال إشعار للديسكورد عند زيارة الموقع
         const webhookUrl = "https://discord.com/api/webhooks/1489789041858576585/xdQt6fPN3hsvZe64qObib_VLo5_zW8jkwmzEJJuPpukfGVZlnspyJANAMzFzJchCctss";
-        
+
         // التأكد من عدم إرسال إشعار متكرر إذا قام الزائر بتحديث الصفحة
         if (!sessionStorage.getItem('visited')) {
-            fetch(webhookUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    username: 'موقع Twelve',
-                    avatar_url: 'https://i.postimg.cc/FRcSHZ7B/twelve-avtar-2.jpg',
-                    embeds: [{
-                        title: '👀 زائر جديد في الموقع!',
-                        description: 'هناك شخص ما يتصفح موقعك الشخصي الآن.',
-                        color: 0xFFA500,
-                        timestamp: new Date().toISOString()
-                    }]
-                })
-            }).then(() => {
-                sessionStorage.setItem('visited', 'true');
-            }).catch(e => console.error("Webhook Error", e));
+            // جلب الأيبي والدولة والمدينة
+            fetch('https://ipapi.co/json/')
+                .then(res => res.json())
+                .catch(() => ({})) // في حالة وجود مانع إعلانات أو خطأ
+                .then(data => {
+                    const os = navigator.userAgent; 
+                    const language = navigator.language || navigator.userLanguage;
+                    const screenRes = `${window.screen.width}x${window.screen.height}`;
+                    
+                    // تنسيق الوقت
+                    const now = new Date();
+                    const timeString = now.toLocaleString('ar-SA', { 
+                        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                        hour12: true 
+                    });
+                    
+                    fetch(webhookUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            username: 'مراقب الزوار | Twelve',
+                            avatar_url: 'https://i.postimg.cc/FRcSHZ7B/twelve-avtar-2.jpg',
+                            embeds: [{
+                                title: '🚨 تنبيه: زائر جديد في موقعك!',
+                                description: 'تم رصد دخول زائر جديد. إليك التفاصيل المجمعة:',
+                                color: 0x00FF00, // أخضر
+                                fields: [
+                                    {
+                                        name: '🌐 عنوان الـ IP',
+                                        value: data.ip ? `\`${data.ip}\`` : 'غير متوفر',
+                                        inline: true
+                                    },
+                                    {
+                                        name: '📍 الموقع الجغرافي',
+                                        value: (data.city && data.country_name) ? `${data.city}, ${data.country_name}` : 'غير متوفر',
+                                        inline: true
+                                    },
+                                    {
+                                        name: '🏢 مزود الإنترنت (ISP)',
+                                        value: data.org || 'غير متوفر',
+                                        inline: true
+                                    },
+                                    {
+                                        name: '🖥️ تفاصيل النظام والمتصفح (User Agent)',
+                                        value: `\`\`\`\n${os}\n\`\`\``,
+                                        inline: false
+                                    },
+                                    {
+                                        name: '📱 دقة الشاشة',
+                                        value: `\`${screenRes}\``,
+                                        inline: true
+                                    },
+                                    {
+                                        name: '🗣️ لغة المتصفح',
+                                        value: `\`${language}\``,
+                                        inline: true
+                                    },
+                                    {
+                                        name: '⏱️ وقت الزيارة الدقيق',
+                                        value: `\`${timeString}\``,
+                                        inline: true
+                                    }
+                                ],
+                                footer: {
+                                    text: 'تنويه: لا يمكن سحب الإيميل أو الاسم بسبب حماية خصوصية المتصفح'
+                                },
+                                timestamp: new Date().toISOString()
+                            }]
+                        })
+                    }).then(() => {
+                        sessionStorage.setItem('visited', 'true');
+                    }).catch(e => console.error("Webhook Error", e));
+                });
         }
     </script>
 </body>

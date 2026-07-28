@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#14161c">
+    <meta name="description" content="twelve · مطوّر بوتات ديسكورد. روابط التواصل والملف الشخصي.">
+
+    <title>twelve · الملف الشخصي</title>
+
+    <link rel="icon" href="https://i.postimg.cc/FRcSHZ7B/twelve-avtar-2.jpg" type="image/jpeg">
+
+    <meta property="og:title" content="twelve · الملف الشخصي">
+    <meta property="og:description" content="مطوّر بوتات ديسكورد · @raeedxa">
+    <meta property="og:image" content="https://i.postimg.cc/FRcSHZ7B/twelve-avtar-2.jpg">
+    <meta property="og:type" content="profile">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="twelve · الملف الشخصي">
+    <meta name="twitter:description" content="مطوّر بوتات ديسكورد · @raeedxa">
+    <meta name="twitter:image" content="https://i.postimg.cc/FRcSHZ7B/twelve-avtar-2.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-0: oklch(0.15 0.006 258);
+            --bg-1: oklch(0.19 0.008 258);
+            --bg-2: oklch(0.25 0.012 255);
+
+            --surface: oklch(0.24 0.010 258 / 0.55);
+            --surface-solid: oklch(0.26 0.010 258);
+            --surface-hover: oklch(0.32 0.012 255);
+
+            --border: oklch(0.80 0.02 250 / 0.12);
+            --border-strong: oklch(0.85 0.03 240 / 0.34);
+
+            --text: oklch(0.95 0.004 258);
+            --text-dim: oklch(0.75 0.008 258);
+            --text-faint: oklch(0.60 0.008 258);
+
+            --accent: oklch(0.83 0.075 228);
+            --accent-dim: oklch(0.83 0.075 228 / 0.16);
+            --online: oklch(0.80 0.15 150);
+
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+            --radius: 22px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            background: var(--bg-0);
+        }
+
+        body {
+            font-family: 'IBM Plex Sans Arabic', system-ui, 'Segoe UI', Tahoma, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(120% 80% at 85% 0%, oklch(0.28 0.02 250 / 0.55), transparent 60%),
+                linear-gradient(155deg, var(--bg-0) 0%, var(--bg-1) 45%, var(--bg-2) 100%);
+            background-attachment: fixed;
+            min-height: 100svh;
+            display: grid;
+            place-items: center;
+            padding: clamp(12px, 4vw, 28px);
+            overflow-x: hidden;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        .ltr { direction: ltr; unicode-bidi: isolate; }
+
+        .particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            top: -8%;
+            color: oklch(0.9 0.02 240);
+            opacity: 0;
+            will-change: transform, opacity;
+            animation: fall linear infinite;
+            filter: drop-shadow(0 0 4px oklch(0.9 0.05 235 / 0.35));
+        }
+
+        @keyframes fall {
+            0%   { transform: translateY(-10vh) rotate(0deg);   opacity: 0; }
+            12%  { opacity: 0.55; }
+            88%  { opacity: 0.55; }
+            100% { transform: translateY(112vh) rotate(300deg); opacity: 0; }
+        }
+
+        .card {
+            position: relative;
+            z-index: 1;
+            width: min(100%, 460px);
+            padding: clamp(26px, 6vw, 40px) clamp(20px, 5vw, 34px);
+            text-align: center;
+            border-radius: var(--radius);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            -webkit-backdrop-filter: blur(22px) saturate(1.2);
+            backdrop-filter: blur(22px) saturate(1.2);
+            box-shadow:
+                0 1px 0 oklch(1 0 0 / 0.06) inset,
+                0 24px 60px oklch(0 0 0 / 0.45);
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(220px 220px at var(--mx, 50%) var(--my, 0%),
+                    var(--accent-dim), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s var(--ease);
+            pointer-events: none;
+        }
+
+        .card:hover::before { opacity: 1; }
+
+        .avatar {
+            position: relative;
+            width: clamp(96px, 26vw, 118px);
+            aspect-ratio: 1;
+            margin: 0 auto 18px;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--border-strong);
+            box-shadow: 0 10px 30px oklch(0 0 0 / 0.4);
+            transition: transform 0.4s var(--ease);
+        }
+
+        .avatar:hover img { transform: scale(1.04); }
+
+        .avatar .status {
+            position: absolute;
+            inset-inline-end: 6px;
+            inset-block-end: 6px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--online);
+            border: 3px solid var(--bg-1);
+            box-shadow: 0 0 0 0 oklch(0.8 0.15 150 / 0.5);
+            animation: pulse 2.4s var(--ease) infinite;
+        }
+
+        @keyframes pulse {
+            0%   { box-shadow: 0 0 0 0 oklch(0.8 0.15 150 / 0.5); }
+            70%  { box-shadow: 0 0 0 8px oklch(0.8 0.15 150 / 0); }
+            100% { box-shadow: 0 0 0 0 oklch(0.8 0.15 150 / 0); }
+        }
+
+        .name {
+            font-family: 'Space Grotesk', 'IBM Plex Sans Arabic', sans-serif;
+            font-size: clamp(1.9rem, 8vw, 2.4rem);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            line-height: 1.1;
+        }
+
+        .handle {
+            margin-top: 6px;
+            font-size: 0.98rem;
+            font-weight: 500;
+            color: var(--text-dim);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 14px;
+            padding: 5px 13px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--accent);
+            background: var(--accent-dim);
+            border: 1px solid oklch(0.83 0.075 228 / 0.25);
+            border-radius: 999px;
+        }
+
+        .badge .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        .bio {
+            margin: 20px auto 0;
+            max-width: 42ch;
+            line-height: 1.85;
+            font-size: 0.96rem;
+            font-weight: 300;
+            color: var(--text-dim);
+        }
+
+        .socials ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: clamp(9px, 2.6vw, 14px);
+            margin-top: 28px;
+        }
+
+        .social {
+            position: relative;
+            display: grid;
+            place-items: center;
+            aspect-ratio: 1;
+            border-radius: 15px;
+            color: var(--text-dim);
+            background: var(--surface-solid);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: transform 0.35s var(--ease), background 0.3s var(--ease),
+                border-color 0.3s var(--ease), color 0.3s var(--ease);
+        }
+
+        .social svg {
+            width: 42%;
+            height: 42%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .social::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            transform: translateX(-120%);
+            background: linear-gradient(105deg, transparent 40%, oklch(0.95 0.02 240 / 0.14) 50%, transparent 60%);
+            transition: transform 0.6s var(--ease);
+        }
+
+        .social:hover,
+        .social:focus-visible {
+            transform: translateY(-4px);
+            color: var(--text);
+            background: var(--surface-hover);
+            border-color: var(--border-strong);
+            outline: none;
+        }
+
+        .social:hover::after,
+        .social:focus-visible::after { transform: translateX(120%); }
+
+        .social:active { transform: translateY(-1px) scale(0.97); }
+
+        .contact {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 26px;
+            padding-top: 22px;
+            border-top: 1px solid var(--border);
+        }
+
+        .email {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.25s var(--ease);
+            word-break: break-all;
+        }
+
+        .email:hover { color: var(--text); }
+        .email svg { width: 16px; height: 16px; flex-shrink: 0; opacity: 0.75; }
+
+        .copy {
+            display: grid;
+            place-items: center;
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            background: transparent;
+            color: var(--text-faint);
+            cursor: pointer;
+            transition: all 0.25s var(--ease);
+        }
+
+        .copy:hover,
+        .copy:focus-visible {
+            color: var(--accent);
+            border-color: var(--border-strong);
+            outline: none;
+        }
+
+        .copy svg { width: 15px; height: 15px; }
+        .copy.done { color: var(--online); border-color: oklch(0.8 0.15 150 / 0.4); }
+
+        .credit {
+            position: relative;
+            z-index: 1;
+            margin-top: 20px;
+            font-size: 0.72rem;
+            letter-spacing: 0.04em;
+            color: var(--text-faint);
+            text-decoration: none;
+            transition: color 0.25s var(--ease);
+        }
+
+        .credit:hover { color: var(--text-dim); }
+
+        .sr-only {
+            position: absolute;
+            width: 1px; height: 1px;
+            padding: 0; margin: -1px;
+            overflow: hidden;
+            clip: rect(0 0 0 0);
+            white-space: nowrap;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            animation: reveal 0.8s var(--ease) forwards;
+            animation-delay: calc(var(--i, 0) * 70ms + 120ms);
+        }
+
+        @keyframes reveal {
+            to { opacity: 1; transform: none; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .reveal { opacity: 1; transform: none; }
+            .particles { display: none; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="particles" aria-hidden="true"></div>
+
+    <main class="card reveal">
+        <div class="avatar reveal" style="--i:0">
+            <img src="https://i.postimg.cc/FRcSHZ7B/twelve-avtar-2.jpg" alt="صورة twelve">
+            <span class="status" title="متصل"></span>
+        </div>
+
+        <h1 class="name reveal ltr" style="--i:1">twelve</h1>
+        <p class="handle reveal" style="--i:2">مطوّر بوتات ديسكورد · <span class="ltr">@raeedxa</span></p>
+        <span class="badge reveal" style="--i:3"><span class="dot"></span> متاح لمشاريع جديدة</span>
+
+        <p class="bio reveal" style="--i:4">
+            مطوّر شغوف بالتقنية والتصميم، أصنع تجارب رقمية دقيقة وحلولاً عملية للمشاكل التقنية،
+            وأتعلّم باستمرار وأشارك المعرفة مع المجتمع.
+        </p>
+
+        <nav class="socials reveal" style="--i:5" aria-label="روابط التواصل الاجتماعي">
+            <ul>
+                <li>
+                    <a class="social" href="https://x.com/twelve_12t" target="_blank" rel="noopener noreferrer"
+                        aria-label="X (تويتر)">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a class="social" href="https://github.com/twelve1235" target="_blank" rel="noopener noreferrer"
+                        aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a class="social" href="https://www.instagram.com/twelve120_/" target="_blank"
+                        rel="noopener noreferrer" aria-label="إنستغرام">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a class="social"
+                        href="https://www.tiktok.com/@MS4wLjABAAAA2x5eBsB8bv6ZpPIgsRU0-d6H03LOHouPQVk3KqimXsCde3g4y215FGe2nnGrwqxg?_t=ZS-8tnd8iBg0yV&_r=1"
+                        target="_blank" rel="noopener noreferrer" aria-label="تيك توك">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                            <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a class="social" href="https://www.youtube.com/@twelve12-0" target="_blank"
+                        rel="noopener noreferrer" aria-label="يوتيوب">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="contact reveal" style="--i:6">
+            <a class="email" href="mailto:rassam@rassam.online">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                </svg>
+                <span class="ltr">rassam@rassam.online</span>
+            </a>
+            <button class="copy" type="button" aria-label="نسخ البريد الإلكتروني" data-email="rassam@rassam.online">
+                <svg class="ico-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                    <rect x="9" y="9" width="13" height="13" rx="2" />
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                </svg>
+            </button>
+        </div>
+    </main>
+
+    <a class="credit reveal" style="--i:8" href="https://x.com/twelve_12t" target="_blank" rel="noopener noreferrer">
+        © <span class="ltr">2026 twelve</span>
+    </a>
+
+    <div class="sr-only" role="status" aria-live="polite" id="live"></div>
+
+    <script>
+        'use strict';
+        (function () {
+            const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            (function particles() {
+                if (reduced) return;
+                const host = document.querySelector('.particles');
+                if (!host) return;
+                const symbols = ['✦', '◇', '✧', '⋆', '✶', '·'];
+                const count = innerWidth <= 600 ? 9 : 16;
+                const frag = document.createDocumentFragment();
+                for (let i = 0; i < count; i++) {
+                    const p = document.createElement('span');
+                    p.className = 'particle';
+                    p.textContent = symbols[(Math.random() * symbols.length) | 0];
+                    p.style.left = (Math.random() * 100).toFixed(2) + '%';
+                    p.style.fontSize = (Math.random() * 10 + 10).toFixed(0) + 'px';
+                    p.style.animationDuration = (Math.random() * 7 + 9).toFixed(1) + 's';
+                    p.style.animationDelay = (-Math.random() * 16).toFixed(1) + 's';
+                    frag.appendChild(p);
+                }
+                host.appendChild(frag);
+            })();
+
+            (function pointerGlow() {
+                if (reduced || matchMedia('(pointer: coarse)').matches) return;
+                const card = document.querySelector('.card');
+                if (!card) return;
+                card.addEventListener('pointermove', (e) => {
+                    const r = card.getBoundingClientRect();
+                    card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+                    card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+                });
+            })();
+
+            (function copyEmail() {
+                const btn = document.querySelector('.copy');
+                const live = document.getElementById('live');
+                if (!btn) return;
+                const okIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>';
+                const original = btn.innerHTML;
+                btn.addEventListener('click', async () => {
+                    const email = btn.dataset.email;
+                    try {
+                        await navigator.clipboard.writeText(email);
+                    } catch {
+                        const t = document.createElement('textarea');
+                        t.value = email; document.body.appendChild(t); t.select();
+                        try { document.execCommand('copy'); } catch (_) {}
+                        t.remove();
+                    }
+                    btn.classList.add('done');
+                    btn.innerHTML = okIcon;
+                    if (live) live.textContent = 'تم نسخ البريد الإلكتروني';
+                    setTimeout(() => {
+                        btn.classList.remove('done');
+                        btn.innerHTML = original;
+                    }, 1800);
+                });
+            })();
+
+            const CONFIG = {
+                analytics: {
+                    enabled: true,
+                    mode: 'proxy',               
+                    endpoint: 'https://twelve-analytics.grgrgrgor4.workers.dev/',
+                    dedupeHours: 12,                  
+                    timeoutMs: 6000
+                }
+            };
+
+            const MESSAGES = [
+                '🖥️ الحياة تبدأ خارج منطقة الراحة. استمر في التعلم!',
+                '🚀 أعظم الأكواد بدأت بفكرة بسيطة وكوب من القهوة ☕.',
+                '💡 لا تخف من الأخطاء، فهي تثبت أنك تحاول بشكل صحيح.',
+                '🕵️‍♂️ تم الاتصال بالنظام بنجاح. مرحباً بك في المتريكس!',
+                '✨ سرّ الإبداع أن تُتقن التفاصيل الصغيرة.',
+                '🎮 تذكّر: الكود الذي لا يحتوي على أخطاء هو كود لم يُكتب بعد!'
+            ];
+
+            (function analytics() {
+                const cfg = CONFIG.analytics;
+                if (!cfg.enabled || !cfg.endpoint || /\/XXXX\//.test(cfg.endpoint)) return;
+
+                try {
+                    const last = +localStorage.getItem('__tw_visit') || 0;
+                    if (Date.now() - last < cfg.dedupeHours * 3600e3) return;
+                    localStorage.setItem('__tw_visit', String(Date.now()));
+                } catch (_) { }
+
+                const withTimeout = (ms) => {
+                    const c = new AbortController();
+                    setTimeout(() => c.abort(), ms);
+                    return c.signal;
+                };
+
+                function detectEnv() {
+                    const ua = navigator.userAgent;
+                    const d = navigator.userAgentData;
+                    let browser = 'غير معروف', os = 'غير معروف';
+
+                    if (d && d.brands && d.brands.length) {
+                        const b = d.brands.find(x => !/Not.?A.?Brand/i.test(x.brand));
+                        browser = (b && b.brand) || browser;
+                        os = d.platform || os;
+                    } else {
+                        if (/Edg\//.test(ua)) browser = 'Edge';
+                        else if (/OPR\/|Opera/.test(ua)) browser = 'Opera';
+                        else if (/Firefox\//.test(ua)) browser = 'Firefox';
+                        else if (/Chrome\//.test(ua)) browser = 'Chrome';
+                        else if (/Safari\//.test(ua)) browser = 'Safari';
+
+                        if (/Windows/.test(ua)) os = 'Windows';
+                        else if (/Android/.test(ua)) os = 'Android';
+                        else if (/iPhone|iPad|iPod/.test(ua)) os = 'iOS';
+                        else if (/Mac OS X/.test(ua)) os = 'macOS';
+                        else if (/Linux/.test(ua)) os = 'Linux';
+                    }
+
+                    const type = (d && d.mobile) ? 'جوال'
+                        : /iPad|Tablet/i.test(ua) ? 'لوحي'
+                        : /Mobi|Android|iPhone/i.test(ua) ? 'جوال' : 'حاسوب';
+
+                    return { browser, os, type };
+                }
+
+                async function fetchGeo() {
+                    const providers = [
+                        { url: 'https://ipapi.co/json/', map: d => ({ ip: d.ip, city: d.city, country: d.country_name, org: d.org }) },
+                        { url: 'https://ipwho.is/', map: d => ({ ip: d.ip, city: d.city, country: d.country, org: d.connection && d.connection.isp }) }
+                    ];
+                    for (const p of providers) {
+                        try {
+                            const r = await fetch(p.url, { signal: withTimeout(cfg.timeoutMs) });
+                            if (!r.ok) continue;
+                            const m = p.map(await r.json());
+                            if (m.ip) return m;
+                        } catch (_) {  }
+                    }
+                    return {};
+                }
+
+                function post(url, payload) {
+                    return fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload),
+                        keepalive: true,
+                        signal: withTimeout(cfg.timeoutMs)
+                    });
+                }
+
+                (async function run() {
+                    const env = detectEnv();
+                    const nav = navigator;
+                    const base = {
+                        screen: screen.width + '×' + screen.height,
+                        browser: env.browser,
+                        os: env.os,
+                        type: env.type,
+                        lang: nav.language || 'غير متوفر',
+                        referrer: document.referrer || 'مباشر',
+                        connection: (nav.connection && nav.connection.effectiveType) || 'غير متوفر',
+                        tz: (() => { try { return Intl.DateTimeFormat().resolvedOptions().timeZone; } catch { return 'غير متوفر'; } })(),
+                        time: (() => { try { return new Date().toLocaleString('ar-SA', { hour12: true }); } catch { return new Date().toISOString(); } })(),
+                        message: MESSAGES[(Math.random() * MESSAGES.length) | 0]
+                    };
+
+                    if (cfg.mode === 'proxy') {
+                        try { await post(cfg.endpoint, base); } catch (_) {}
+                        return;
+                    }
+
+                    const geo = await fetchGeo();
+                    const g = v => '`' + (v || 'غير متوفر') + '`';
+                    const location = (geo.city && geo.country) ? geo.city + '، ' + geo.country : 'غير متوفر';
+
+                    const payload = {
+                        username: 'مراقب الزوار | Twelve',
+                        avatar_url: 'https://i.postimg.cc/FRcSHZ7B/twelve-avtar-2.jpg',
+                        embeds: [
+                            {
+                                title: '👁️ زائر جديد في الموقع',
+                                color: 8421504,
+                                description:
+                                    '**🌐 IP:** ' + g(geo.ip) + '\n' +
+                                    '**📍 الموقع:** ' + g(location) + '\n' +
+                                    '**🏢 المزوّد:** ' + g(geo.org) + '\n' +
+                                    '**💻 الجهاز:** ' + g(base.type + ' · ' + base.os) + '\n' +
+                                    '**🧭 المتصفح:** ' + g(base.browser) + '\n' +
+                                    '**📶 الاتصال:** ' + g(base.connection) + '\n' +
+                                    '**📱 الشاشة:** ' + g(base.screen) + '\n' +
+                                    '**🗣️ اللغة:** ' + g(base.lang) + '\n' +
+                                    '**↩️ المصدر:** ' + g(base.referrer) + '\n' +
+                                    '**⏱️ الوقت:** ' + g(base.time),
+                                timestamp: new Date().toISOString()
+                            },
+                            {
+                                title: '💬 رسالة النظام',
+                                description: '**"' + base.message + '"**',
+                                color: 3092790
+                            }
+                        ]
+                    };
+
+                    try { await post(cfg.endpoint, payload); } catch (_) {}
+                })();
+            })();
+        })();
+    </script>
+</body>
+
+</html>

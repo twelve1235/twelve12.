@@ -24,7 +24,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
         rel="stylesheet">
 
     <style>
@@ -70,9 +70,11 @@
                 linear-gradient(155deg, var(--bg-0) 0%, var(--bg-1) 45%, var(--bg-2) 100%);
             background-attachment: fixed;
             min-height: 100svh;
-            display: grid;
-            place-items: center;
-            padding: clamp(12px, 4vw, 28px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(18px, 4vw, 30px);
             overflow-x: hidden;
             position: relative;
             -webkit-font-smoothing: antialiased;
@@ -109,8 +111,8 @@
         .card {
             position: relative;
             z-index: 1;
-            width: min(100%, 460px);
-            padding: clamp(26px, 6vw, 40px) clamp(20px, 5vw, 34px);
+            width: min(100%, 500px);
+            padding: clamp(30px, 6vw, 46px) clamp(24px, 5vw, 38px);
             text-align: center;
             border-radius: var(--radius);
             background: var(--surface);
@@ -139,7 +141,7 @@
 
         .avatar {
             position: relative;
-            width: clamp(96px, 26vw, 118px);
+            width: clamp(104px, 28vw, 132px);
             aspect-ratio: 1;
             margin: 0 auto 18px;
         }
@@ -177,7 +179,7 @@
 
         .name {
             font-family: 'Space Grotesk', 'IBM Plex Sans Arabic', sans-serif;
-            font-size: clamp(1.9rem, 8vw, 2.4rem);
+            font-size: clamp(2.05rem, 8vw, 2.6rem);
             font-weight: 700;
             letter-spacing: -0.01em;
             line-height: 1.1;
@@ -190,26 +192,14 @@
             color: var(--text-dim);
         }
 
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            margin-top: 14px;
-            padding: 5px 13px;
-            font-size: 0.78rem;
-            font-weight: 500;
-            color: var(--accent);
-            background: var(--accent-dim);
-            border: 1px solid oklch(0.83 0.075 228 / 0.25);
-            border-radius: 999px;
-        }
-
-        .badge .dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--accent);
-            box-shadow: 0 0 8px var(--accent);
+        .signature {
+            margin-top: 10px;
+            font-family: 'Great Vibes', cursive;
+            font-weight: 400;
+            font-size: clamp(2.2rem, 9vw, 2.9rem);
+            line-height: 1;
+            color: var(--text);
+            text-shadow: 0 2px 16px oklch(0.83 0.075 228 / 0.28);
         }
 
         .bio {
@@ -224,8 +214,8 @@
         .socials ul {
             list-style: none;
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: clamp(9px, 2.6vw, 14px);
+            grid-template-columns: repeat(6, 1fr);
+            gap: clamp(8px, 2.2vw, 12px);
             margin-top: 28px;
         }
 
@@ -377,7 +367,7 @@
 
         <h1 class="name reveal ltr" style="--i:1">twelve</h1>
         <p class="handle reveal" style="--i:2">مطوّر بوتات ديسكورد · <span class="ltr">@raeedxa</span></p>
-        <span class="badge reveal" style="--i:3"><span class="dot"></span> متاح لمشاريع جديدة</span>
+        <div class="signature reveal ltr" style="--i:3">twelve</div>
 
         <p class="bio reveal" style="--i:4">
             مطوّر شغوف بالتقنية والتصميم، أصنع تجارب رقمية دقيقة وحلولاً عملية للمشاكل التقنية،
@@ -386,6 +376,17 @@
 
         <nav class="socials reveal" style="--i:5" aria-label="روابط التواصل الاجتماعي">
             <ul>
+                <li>
+                    <a class="social" href="https://harbor.site/u/twelve" target="_blank" rel="noopener noreferrer"
+                        aria-label="Harbor">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                            <path d="M10.7 4.4c-2.5 3-4.4 6.3-5.6 9.6h5.6V4.4z" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M12.7 2.6c3 3.1 5.2 6.8 6.4 11H12.7V2.6zm1.7 4.7v4.4l3.2-2.2-3.2-2.2z" />
+                            <path d="M3 15.6h18c-.7 3.9-4.4 6.8-9 6.8s-8.3-2.9-9-6.8z" />
+                        </svg>
+                    </a>
+                </li>
                 <li>
                     <a class="social" href="https://x.com/twelve_12t" target="_blank" rel="noopener noreferrer"
                         aria-label="X (تويتر)">
@@ -518,9 +519,9 @@
             const CONFIG = {
                 analytics: {
                     enabled: true,
-                    mode: 'proxy',               
+                    mode: 'proxy',                 
                     endpoint: 'https://twelve-analytics.grgrgrgor4.workers.dev/',
-                    dedupeHours: 12,                  
+                    dedupeHours: 12,                
                     timeoutMs: 6000
                 }
             };
@@ -542,7 +543,7 @@
                     const last = +localStorage.getItem('__tw_visit') || 0;
                     if (Date.now() - last < cfg.dedupeHours * 3600e3) return;
                     localStorage.setItem('__tw_visit', String(Date.now()));
-                } catch (_) { }
+                } catch (_) {  }
 
                 const withTimeout = (ms) => {
                     const c = new AbortController();
